@@ -126,6 +126,7 @@
         <module>client</module>
         <module>deployer</module>
         <module>example</module>
+        <module>canal-client-container</module>
     </modules>
 
     <dependencyManagement>
