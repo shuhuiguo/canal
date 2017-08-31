@@ -9,6 +9,6 @@ public interface ExecuteService   {
      * 执行方法
      * @param result
      */
-    public void execute(Result result);
+    void execute(Result result);
 
 }
