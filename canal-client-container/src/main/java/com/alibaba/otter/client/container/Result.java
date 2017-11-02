@@ -4,7 +4,9 @@ import com.alibaba.otter.canal.protocol.CanalEntry.Column;
 import com.alibaba.otter.canal.protocol.CanalEntry.EventType;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 变更结果
@@ -23,10 +25,22 @@ public class Result {
      * 变更前数据：delete 只有变更前数据
      */
     private List<Column> beforeColumns;
+
+    /**
+     * 变更前
+     */
+    private Map<String,Object> bfColumns;
+
+    /**
+     * 变更后
+     */
+    private Map<String,Object> afColumns;
     /**
      * 实际变更时间
      */
     private Date executeTime;
+
+    private String tableName;
 
     public EventType getEventType() {
         return eventType;
@@ -58,5 +72,48 @@ public class Result {
 
     public void setExecuteTime(Date executeTime) {
         this.executeTime = executeTime;
+    }
+
+    public Map<String, Object> getBfColumns() {
+        return bfColumns;
+    }
+
+    public void setBfColumns(Map<String, Object> bfColumns) {
+        this.bfColumns = bfColumns;
+    }
+
+    public Map<String, Object> getAfColumns() {
+        return afColumns;
+    }
+
+    public void setAfColumns(Map<String, Object> afColumns) {
+        this.afColumns = afColumns;
+    }
+
+    public static Map<String,Object> toTransformM(List<Column> columns){
+        Map<String,Object> map = new HashMap<String, Object>();
+        for(Column column : columns){
+            map.put(column.getName(),column.getValue());
+        }
+        return map;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "eventType=" + eventType +
+                ", bfColumns=" + bfColumns +
+                ", afColumns=" + afColumns +
+                ", executeTime=" + executeTime +
+                ", tableName='" + tableName + '\'' +
+                '}';
     }
 }

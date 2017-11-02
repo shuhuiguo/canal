@@ -9,11 +9,11 @@ import com.alibaba.otter.client.container.TableFilter;
 public class TestMain {
     public static void main(String[] args){
         ConsumerContainer consumerContainer= new ConsumerContainer("shuhg","192.168.43.42",11111,"","");
-        TableFilter filter = new TableFilter();
-        filter.setTables("plt_image");
+        //TableFilter filter = new TableFilter();
+        //filter.setTables("plt_image");
 
-        consumerContainer.addTableFilter(filter);
-        consumerContainer.addTableFilter(new TableFilter("cts_user"));
+        //consumerContainer.addTableFilter(filter);
+        consumerContainer.addTableFilter(new TableFilter("*"));
         consumerContainer.run();
     }
 }

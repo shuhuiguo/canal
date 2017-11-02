@@ -50,7 +50,7 @@ public class ConsumerContainer {
      * 初始化
      */
     public void init(){
-        logger.info("canal consumerContainer init");
+        logger.info("canal consumerContainer init !");
         if(destinations.contains(this.destination)){
             logger.error("this destination :{} is exist",this.destination);
             return;
@@ -87,6 +87,7 @@ public class ConsumerContainer {
 
             }
         } catch (Exception e) {
+            e.printStackTrace();
              //connector.rollback(batchId); // 处理失败, 回滚数据
         } finally {
             connector.disconnect();

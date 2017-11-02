@@ -27,7 +27,7 @@ public class ConsumerThread implements Runnable{
                 Result result = null;
                 for (TableFilter tableFilter : tableFilters) {
                     //判断拦截的表名
-                    if (tableFilter.getTables().contains(entry.getHeader().getTableName())){
+                    if (tableFilter.getTables().contains(entry.getHeader().getTableName()) || tableFilter.getTables().contains("*")){
                         try {
                             rowChage = RowChange.parseFrom(entry.getStoreValue());
                         } catch (Exception e) {
@@ -40,6 +40,9 @@ public class ConsumerThread implements Runnable{
                             result.setBeforeColumns(rowData.getBeforeColumnsList());
                             result.setAfterColumns(rowData.getAfterColumnsList());
                             result.setExecuteTime(new Date(entry.getHeader().getExecuteTime()));
+                            result.setBfColumns(Result.toTransformM(rowData.getBeforeColumnsList()));
+                            result.setAfColumns(Result.toTransformM(rowData.getAfterColumnsList()));
+                            result.setTableName(rowChage.getDdlSchemaName());
                             tableFilter.run(result);
                         }
 
