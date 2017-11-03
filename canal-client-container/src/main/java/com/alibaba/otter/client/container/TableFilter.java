@@ -23,6 +23,11 @@ public class TableFilter {
         this.tables = tables;
     }
 
+    public TableFilter(String tables,ExecuteService executeService){
+        this.tables = tables;
+        this.executeService = executeService;
+    }
+
     public void run(Result result){
         this.getExecuteService().execute(result);
     }
