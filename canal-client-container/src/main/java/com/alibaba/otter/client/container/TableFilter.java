@@ -15,12 +15,14 @@ public class TableFilter {
     /**
      * 实际业务执行类
      */
+    private ExecuteService executeService;
 
     public TableFilter(){};
+
     public TableFilter(String tables){
         this.tables = tables;
     }
-    private ExecuteService executeService;
+
     public void run(Result result){
         this.getExecuteService().execute(result);
     }
