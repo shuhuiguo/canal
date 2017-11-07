@@ -24,7 +24,7 @@ public class ConsumerContainer {
     //canal目标集合，不能重复
     private static List<String> destinations = new ArrayList<String>();
     private CanalConnector connector;
-    private String destination;
+    private String destinationName;
     private String hostname;
     private int port;
     private String userName;
@@ -35,9 +35,9 @@ public class ConsumerContainer {
     private volatile boolean isInit = false;
     //表拦截器
     private List<TableFilter> tableFilters = new ArrayList<TableFilter>();
-    public ConsumerContainer(String destination,String hostname,int port,String userName,String pwd){
-        this.destination = destination;
-        this.hostname = hostname;
+    public ConsumerContainer(String destinationName,String hostName,int port,String userName,String pwd){
+        this.destinationName = destinationName;
+        this.hostname = hostName;
         this.port = port;
         this.userName = userName;
         this.pwd = pwd;
@@ -51,13 +51,13 @@ public class ConsumerContainer {
      */
     public void init(){
         logger.info("canal consumerContainer init !");
-        if(destinations.contains(this.destination)){
-            logger.error("this destination :{} is exist",this.destination);
+        if(destinations.contains(this.destinationName)){
+            logger.error("this destination :{} is exist",this.destinationName);
             return;
         }
-        this.destinations.add(this.destination);
+        this.destinations.add(this.destinationName);
         connector  = CanalConnectors.newSingleConnector(new InetSocketAddress(hostname, port),
-                destination,
+                destinationName,
                 userName,
                 pwd);
         this.isInit = true;
@@ -68,7 +68,7 @@ public class ConsumerContainer {
             init();
         }
         try {
-            MDC.put("destination", destination);
+            MDC.put("destination", destinationName);
             connector.connect();
             connector.subscribe();
             List<Entry>  entries= null;
@@ -95,12 +95,12 @@ public class ConsumerContainer {
         }
     }
 
-    public String getDestination() {
-        return destination;
+    public String getDestinationName() {
+        return destinationName;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setDestinationName(String destinationName) {
+        this.destinationName = destinationName;
     }
 
     public String getHostname() {

@@ -42,7 +42,7 @@ public class ConsumerThread implements Runnable{
                             result.setExecuteTime(new Date(entry.getHeader().getExecuteTime()));
                             result.setBfColumns(Result.toTransformM(rowData.getBeforeColumnsList()));
                             result.setAfColumns(Result.toTransformM(rowData.getAfterColumnsList()));
-                            result.setTableName(rowChage.getDdlSchemaName());
+                            result.setTableName(entry.getHeader().getTableName());
                             tableFilter.run(result);
                         }
 
