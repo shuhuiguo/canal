@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 /**
  * Created by 大舒 on 2017/8/30.
  */
-public class DefaultExecuteSerivceImpl implements ExecuteService {
+public class DefaultExecuteHandle implements ExecuteHandle {
     @Override
     public void execute(Result result) {
         {

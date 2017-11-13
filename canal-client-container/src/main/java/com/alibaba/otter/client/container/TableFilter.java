@@ -15,7 +15,7 @@ public class TableFilter {
     /**
      * 实际业务执行类
      */
-    private ExecuteService executeService;
+    private ExecuteHandle executeService;
 
     public TableFilter(){};
 
@@ -23,7 +23,7 @@ public class TableFilter {
         this.tables = tables;
     }
 
-    public TableFilter(String tables,ExecuteService executeService){
+    public TableFilter(String tables,ExecuteHandle executeService){
         this.tables = tables;
         this.executeService = executeService;
     }
@@ -38,9 +38,9 @@ public class TableFilter {
         return t;
     }
 
-    public ExecuteService getExecuteService() {
+    public ExecuteHandle getExecuteService() {
         if(this.executeService == null){
-            executeService = new DefaultExecuteSerivceImpl();
+            executeService = new DefaultExecuteHandle();
         }
         return executeService;
     }
@@ -49,7 +49,7 @@ public class TableFilter {
         this.tables = tables;
     }
 
-    public void setExecuteService(ExecuteService executeService) {
+    public void setExecuteService(ExecuteHandle executeService) {
         this.executeService = executeService;
     }
 }
