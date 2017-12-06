@@ -3,10 +3,7 @@ package com.alibaba.otter.client.container;
 import com.alibaba.otter.canal.protocol.CanalEntry.Column;
 import com.alibaba.otter.canal.protocol.CanalEntry.EventType;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 变更结果
@@ -97,7 +94,27 @@ public class Result {
         }
         return map;
     }
-
+    public static Map<String,Object> toTransformM(List<Column> columns,TableFilter tableFilter){
+        Map<String,Object> map = new HashMap<String, Object>();
+        boolean isUpdate = true;
+        List<String> updateColumns = new ArrayList<String>();
+        if(tableFilter.getUpdateColumns() != null && tableFilter.getUpdateColumns().length >0){
+            updateColumns = Arrays.asList(tableFilter.getUpdateColumns());
+            isUpdate = false;
+        }
+        for(Column column : columns){
+            //TODO 该列是否已更新
+            if(!isUpdate && updateColumns.contains(column.getName()) && column.getUpdated()){
+                isUpdate = true;
+            }
+            map.put(column.getName(),column.getValue());
+        }
+        if(isUpdate){
+            return map;
+        }else{
+            return null;
+        }
+    }
     public String getTableName() {
         return tableName;
     }

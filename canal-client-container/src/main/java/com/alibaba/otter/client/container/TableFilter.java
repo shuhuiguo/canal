@@ -17,12 +17,20 @@ public class TableFilter {
      */
     private ExecuteHandle executeService;
 
+    /**
+     * 更改的列
+     */
+    private String[] updateColumns;
+
     public TableFilter(){};
 
     public TableFilter(String tables){
         this.tables = tables;
     }
-
+    public TableFilter(String tables,String[] updateColumns){
+        this.tables = tables;
+        this.updateColumns = updateColumns;
+    }
     public TableFilter(String tables,ExecuteHandle executeService){
         this.tables = tables;
         this.executeService = executeService;
@@ -51,5 +59,13 @@ public class TableFilter {
 
     public void setExecuteService(ExecuteHandle executeService) {
         this.executeService = executeService;
+    }
+
+    public String[] getUpdateColumns() {
+        return updateColumns;
+    }
+
+    public void setUpdateColumns(String[] updateColumns) {
+        this.updateColumns = updateColumns;
     }
 }

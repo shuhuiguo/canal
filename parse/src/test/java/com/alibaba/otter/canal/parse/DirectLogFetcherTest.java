@@ -1,11 +1,5 @@
 package com.alibaba.otter.canal.parse;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.alibaba.otter.canal.parse.driver.mysql.MysqlConnector;
 import com.alibaba.otter.canal.parse.driver.mysql.packets.HeaderPacket;
 import com.alibaba.otter.canal.parse.driver.mysql.packets.client.BinlogDumpCommandPacket;
@@ -14,6 +8,11 @@ import com.alibaba.otter.canal.parse.inbound.mysql.dbsync.DirectLogFetcher;
 import com.taobao.tddl.dbsync.binlog.LogContext;
 import com.taobao.tddl.dbsync.binlog.LogDecoder;
 import com.taobao.tddl.dbsync.binlog.LogEvent;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
 
 public class DirectLogFetcherTest {
 
@@ -21,9 +20,9 @@ public class DirectLogFetcherTest {
     public void testSimple() {
         DirectLogFetcher fetcher = new DirectLogFetcher();
         try {
-            MysqlConnector connector = new MysqlConnector(new InetSocketAddress("127.0.0.1", 3306), "xxxxx", "xxxxx");
+            MysqlConnector connector = new MysqlConnector(new InetSocketAddress("192.168.188.50", 3306), "sxfax", "sxfax123456");
             connector.connect();
-            sendBinlogDump(connector, "mysql-bin.001016", 4L, 3);
+            //sendBinlogDump(connector, "mysql-bin.001016", 4L, 3);
 
             fetcher.start(connector.getChannel());
 

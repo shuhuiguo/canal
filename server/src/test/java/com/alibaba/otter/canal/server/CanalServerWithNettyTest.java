@@ -1,38 +1,23 @@
 package com.alibaba.otter.canal.server;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
-import java.util.Arrays;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.alibaba.otter.canal.instance.core.CanalInstance;
 import com.alibaba.otter.canal.instance.core.CanalInstanceGenerator;
 import com.alibaba.otter.canal.instance.manager.CanalInstanceWithManager;
 import com.alibaba.otter.canal.instance.manager.model.Canal;
 import com.alibaba.otter.canal.instance.manager.model.CanalParameter;
-import com.alibaba.otter.canal.instance.manager.model.CanalParameter.HAMode;
-import com.alibaba.otter.canal.instance.manager.model.CanalParameter.IndexMode;
-import com.alibaba.otter.canal.instance.manager.model.CanalParameter.MetaMode;
-import com.alibaba.otter.canal.instance.manager.model.CanalParameter.SourcingType;
-import com.alibaba.otter.canal.instance.manager.model.CanalParameter.StorageMode;
-import com.alibaba.otter.canal.protocol.CanalPacket.Ack;
-import com.alibaba.otter.canal.protocol.CanalPacket.ClientAck;
-import com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth;
-import com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback;
-import com.alibaba.otter.canal.protocol.CanalPacket.Get;
-import com.alibaba.otter.canal.protocol.CanalPacket.Handshake;
-import com.alibaba.otter.canal.protocol.CanalPacket.Messages;
-import com.alibaba.otter.canal.protocol.CanalPacket.Packet;
-import com.alibaba.otter.canal.protocol.CanalPacket.PacketType;
-import com.alibaba.otter.canal.protocol.CanalPacket.Sub;
-import com.alibaba.otter.canal.protocol.CanalPacket.Unsub;
+import com.alibaba.otter.canal.instance.manager.model.CanalParameter.*;
+import com.alibaba.otter.canal.protocol.CanalPacket.*;
 import com.alibaba.otter.canal.server.embedded.CanalServerWithEmbedded;
 import com.alibaba.otter.canal.server.netty.CanalServerWithNetty;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 
 public class CanalServerWithNettyTest {
 
@@ -229,7 +214,7 @@ public class CanalServerWithNettyTest {
 
         CanalParameter parameter = new CanalParameter();
 
-        parameter.setZkClusters(Arrays.asList("127.0.0.1:2188"));
+        //parameter.setZkClusters(Arrays.asList("127.0.0.1:2188"));
         parameter.setMetaMode(MetaMode.MEMORY);
         parameter.setHaMode(HAMode.HEARTBEAT);
         parameter.setIndexMode(IndexMode.MEMORY);
