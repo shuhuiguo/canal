@@ -39,6 +39,11 @@ public class Result {
 
     private String tableName;
 
+    /**
+     * 变更的列
+     */
+    private String updateColumnNams;
+
     public EventType getEventType() {
         return eventType;
     }
@@ -132,5 +137,13 @@ public class Result {
                 ", executeTime=" + executeTime +
                 ", tableName='" + tableName + '\'' +
                 '}';
+    }
+
+    public String getUpdateColumnNams() {
+        return updateColumnNams;
+    }
+
+    public void setUpdateColumnNams(String updateColumnNams) {
+        this.updateColumnNams = updateColumnNams;
     }
 }

@@ -50,6 +50,9 @@ public class ConsumerThread implements Runnable{
                             result.setBeforeColumns(rowData.getBeforeColumnsList());
                             result.setAfterColumns(rowData.getAfterColumnsList());
                             result.setExecuteTime(new Date(entry.getHeader().getExecuteTime()));
+                            if(rowData.getPropsCount()>0 && rowData.getProps(0).getKey().equals(UPDATECOLUMNNAMES)){
+                                result.setUpdateColumnNams(rowData.getProps(0).getValue());
+                            }
 
                             result.setAfColumns(Result.toTransformM(rowData.getAfterColumnsList()));
                             result.setBfColumns(Result.toTransformM(rowData.getBeforeColumnsList()));
